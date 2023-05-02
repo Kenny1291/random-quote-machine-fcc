@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
+const colors = ["#16a085", "#27ae60", "#2c3e50", "#f39c12", "#e74c3c", "#9b59b6", "#FB6964", "#342224", "#472E32", "#BDBB99", "#77B1A9", "#73A857"] as const
+
 interface Quote {
   quote: string
   author: string
 }
 
-type Color = "#16a085" | "#27ae60" | "#2c3e50" | "#f39c12" | "#e74c3c" | "#9b59b6" | "#FB6964" | "#342224" | "#472E32" | "#BDBB99" | "#77B1A9" | "#73A857"
+type Color = typeof colors[number]
 
 interface Style {
   textColor: {color: string}
@@ -19,8 +21,7 @@ interface Style {
 
 function RandomQuoteMachine() {
   const [quotes, setQuotes] = useState<Quote[]>([{quote: "", author: ""}])
-  const [index, setIndex] = useState(nextRandomIndex)
-  const [colors, setColors] = useState<Color[]>(["#16a085", "#27ae60", "#2c3e50", "#f39c12", "#e74c3c", "#9b59b6", "#FB6964", "#342224", "#472E32", "#BDBB99", "#77B1A9", "#73A857"])
+  const [index, setIndex] = useState<number>(nextRandomIndex)
   const [randomColor, setRandomColor] = useState<Color>(nextRandomColor)
   const [styles, setStyles] = useState<Style>(nextStyles)
 
@@ -51,7 +52,8 @@ function RandomQuoteMachine() {
     setIndex(nextRandomIndex())
     setRandomColor(nextRandomColor())
     setStyles(nextStyles())
-    document.getElementById("root").style.backgroundColor = randomColor;
+    const root = document.getElementById("root")
+    if (root) root.style.backgroundColor = randomColor;
   }
 
   return (
