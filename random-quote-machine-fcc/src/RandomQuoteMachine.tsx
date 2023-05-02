@@ -67,7 +67,7 @@ function RandomQuoteMachine() {
             <div id="inner-container">
 
               <div id="quote-container">
-                <p id="text">"{quotes[index]["quote"]}"</p>{" "}
+                <p id="text">"{quotes[index]["quote"]}"</p>
                 <p id="author">
                   - {quotes[index]["author"]}
                 </p>
@@ -78,9 +78,9 @@ function RandomQuoteMachine() {
                   href={"https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" +
                     encodeURIComponent(
                       '"' +
-                      quotes[0] +
-                      '" ' +
-                      quotes[0]
+                      quotes[index]["quote"] +
+                      '" -' +
+                      quotes[index]["author"]
                     )}
                   target="_top"
                   title="Tweet this quote!"
